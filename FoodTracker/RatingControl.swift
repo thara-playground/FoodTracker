@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RatingControl: UIView {
+@IBDesignable class RatingControl: UIStackView {
     
     // MARK: Properties
     
@@ -19,61 +19,66 @@ class RatingControl: UIView {
     }
     var ratingButtons = [UIButton]()
     
-    let spacing = 5
-    let starCount = 5
+    @IBInspectable var starSize: CGSize = CGSize(width: 44.0, height: 44.0)
+    @IBInspectable var starCount: Int = 5
     
     // MARK: Initialization
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupButtons()
+    }
+    
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
+        setupButtons()
+    }
+    
+    func setupButtons() {
         
-        let filledStarImage = UIImage(named: "filledStar")
-        let emptyStarImage = UIImage(named: "emptyStar")
+        // Clear any existing buttons
+        for button in ratingButtons {
+            removeArrangedSubview(button)
+            button.removeFromSuperview()
+        }
+        ratingButtons.removeAll()
+        
+        let bundle = Bundle(for: type(of: self))
+        let filledStar = UIImage(named: "filledStar", in: bundle, compatibleWith: self.traitCollection)
+        let emptyStar = UIImage(named: "emptyStar", in: bundle, compatibleWith: self.traitCollection)
+        let highlightedStar = UIImage(named:"highlightedStar", in: bundle, compatibleWith: self.traitCollection)
         
         for _ in 0..<self.starCount {
             let button = UIButton()
-            button.setImage(emptyStarImage, forState: .Normal)
-            button.setImage(filledStarImage, forState: .Selected)
-            button.setImage(filledStarImage, forState: [.Highlighted, .Selected])
-            button.adjustsImageWhenHighlighted = false
+            button.setImage(emptyStar, for: .normal)
+            button.setImage(filledStar, for: .selected)
+            button.setImage(highlightedStar, for: .highlighted)
+            button.setImage(highlightedStar, for: [.highlighted, .selected])
             
-            button.addTarget(self, action: #selector(ratingButtonTapped(_:)), forControlEvents: .TouchDown)
+            button.heightAnchor.constraint(equalToConstant: starSize.height).isActive = true
+            button.widthAnchor.constraint(equalToConstant: starSize.width).isActive = true
             
-            self.ratingButtons += [button]
-            self.addSubview(button)
+            // Setup the button action
+            button.addTarget(self, action: #selector(RatingControl.ratingButtonTapped(button:)), for: .touchUpInside)
+            
+            // Add the button to the stack
+            addArrangedSubview(button)
+            
+            ratingButtons.append(button)
         }
     }
-    
-    override func layoutSubviews() {
-        // Set the button's width and height to a square the size of the frame's height.
-        let buttonSize = Int(frame.size.height)
-        var buttonFrame = CGRect(x: 0, y: 0, width: 44, height: 44)
-        
-        // Offset each button's origin by the length of the button plus spacing.
-        for (index, button) in ratingButtons.enumerate() {
-            buttonFrame.origin.x = CGFloat(index * (buttonSize + self.spacing))
-            button.frame = buttonFrame
-        }
-        self.updateButtonSelectionStates()
-    }
-    
-    override func intrinsicContentSize() -> CGSize {
-        let buttonSize = Int(frame.size.height)
-        let width = (buttonSize * self.starCount) + (self.spacing * (self.starCount - 1))
-        return CGSize(width: width, height: buttonSize)
-    }
-    
+
     // MARK: Button Action
     
     func ratingButtonTapped(button: UIButton) {
-        self.rating = self.ratingButtons.indexOf(button)! + 1
+        self.rating = self.ratingButtons.index(of: button)! + 1
         self.updateButtonSelectionStates()
     }
     
     func updateButtonSelectionStates() {
-        for (index, button) in self.ratingButtons.enumerate() {
+        for (index, button) in self.ratingButtons.enumerated() {
             // If the index of a button is less than the rating, that button should be selected.
-            button.selected = index < self.rating
+            button.isSelected = index < self.rating
         }
     }
 }

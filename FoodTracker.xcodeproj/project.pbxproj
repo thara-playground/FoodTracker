@@ -91,9 +91,9 @@
 				7BE96F8A1D0E7160004BFD33 /* MealTableViewController.swift */,
 				7B2B26841CF414B000894BD6 /* MealViewController.swift */,
 				7B01A3AB1D092BA800DD72D8 /* Meal.swift */,
-				7B2B26861CF414B000894BD6 /* Main.storyboard */,
 				7B01A3AE1D092E2900DD72D8 /* MealTableViewCell.swift */,
 				7B2B26891CF414B000894BD6 /* Assets.xcassets */,
+				7B2B26861CF414B000894BD6 /* Main.storyboard */,
 				7B2B268B1CF414B000894BD6 /* LaunchScreen.storyboard */,
 				7B2B268E1CF414B000894BD6 /* Info.plist */,
 				7BA79E271D0538CC00E49C57 /* RatingControl.swift */,
@@ -155,16 +155,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Tomochika Hara";
 				TargetAttributes = {
 					7B2B267E1CF414B000894BD6 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = UNG3RDFY3T;
+						LastSwiftMigration = 0820;
 					};
 					7B2B26921CF414B000894BD6 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = UNG3RDFY3T;
+						LastSwiftMigration = 0820;
 						TestTargetID = 7B2B267E1CF414B000894BD6;
 					};
 				};
@@ -276,8 +278,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -322,8 +326,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -342,6 +348,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -356,6 +363,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.thara.FoodTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -368,6 +376,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.thara.FoodTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -379,6 +388,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.thara.FoodTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoodTracker.app/FoodTracker";
 			};
 			name = Debug;
@@ -391,6 +401,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.thara.FoodTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoodTracker.app/FoodTracker";
 			};
 			name = Release;
